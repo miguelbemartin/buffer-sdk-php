@@ -37,7 +37,6 @@ class Client implements ClientInterface
             $response = $this->httpClient->request($method, $this->baseURL.$endpoint, $options);
             $responseArray = $response->toArray();
         } catch (TransportExceptionInterface $e) {
-
         }
 
 //        if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 500) {

@@ -1,5 +1,5 @@
-# buffer-php
-Buffer PHP is a wrapper for the Buffer API
+# Buffer SDK PHP
+Buffer SDK PHP is a wrapper for the Buffer API service
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ Buffer PHP is a wrapper for the Buffer API
 Run into the terminal the next command
 
 ```
-composer require miguelbemartin/buffer-php
+composer require miguelbemartin/buffer-sdk-php
 ```
 
 ## Usage

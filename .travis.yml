@@ -1,6 +1,7 @@
 language: php
 
 before_script:
+  - composer install
   - echo 'date.timezone = "UTC"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 script:

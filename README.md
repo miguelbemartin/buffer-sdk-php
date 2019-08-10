@@ -1,8 +1,10 @@
-# Buffer SDK PHP
+# ![Buffer logo](https://buffer.com/images/buffer-logo.svg)
 
 [![Build Status](https://travis-ci.org/miguelbemartin/buffer-sdk-php.svg?branch=master)](https://travis-ci.org/miguelbemartin/buffer-sdk-php)
 
-Buffer SDK PHP is a wrapper for the Buffer API service
+This library allows you to quickly and easily use the Buffer Web API v1 via PHP.
+
+[Official Documentation](https://buffer.com/developers)
 
 
 ## Getting Started

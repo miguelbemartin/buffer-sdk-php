@@ -5,7 +5,4 @@ before_script:
   - echo 'date.timezone = "UTC"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 script:
-  - php vendor/bin/phpunit -c phpunit.xml --coverage-text
-
-after_script:
-  - php vendor/bin/coveralls -v
+  - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-text

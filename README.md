@@ -1,5 +1,9 @@
 # Buffer SDK PHP
+
+[![Build Status](https://travis-ci.org/miguelbemartin/buffer-sdk-php.svg?branch=master)](https://travis-ci.org/miguelbemartin/buffer-sdk-php)
+
 Buffer SDK PHP is a wrapper for the Buffer API service
+
 
 ## Getting Started
 

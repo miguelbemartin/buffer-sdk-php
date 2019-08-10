@@ -1,0 +1,11 @@
+language: php
+
+before_script:
+  - echo 'date.timezone = "UTC"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - composer require satooshi/php-coveralls:dev-master --prefer-source --no-interaction --dev
+
+script:
+  - php vendor/bin/phpunit -c phpunit.xml --coverage-text
+
+after_script:
+  - php vendor/bin/coveralls -v

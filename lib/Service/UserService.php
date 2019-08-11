@@ -20,6 +20,8 @@ class UserService
     }
 
     /**
+     * Returns a single user.
+     *
      * @return array
      */
     public function getUser()

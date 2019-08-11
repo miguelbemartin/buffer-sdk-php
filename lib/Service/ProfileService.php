@@ -20,6 +20,8 @@ class ProfileService
     }
 
     /**
+     * Returns an array of social media profiles connected to a users account.
+     *
      * @return array
      */
     public function getProfiles()
@@ -28,6 +30,8 @@ class ProfileService
     }
 
     /**
+     * Returns details of the single specified social media profile.
+     *
      * @param string $profileID
      * @return array
      */
@@ -37,6 +41,8 @@ class ProfileService
     }
 
     /**
+     * Returns details of the posting schedules associated with a social media profile.
+     *
      * @param string $profileID
      * @return array
      */
@@ -46,6 +52,8 @@ class ProfileService
     }
 
     /**
+     * Set the posting schedules for the specified social media profile.
+     *
      * @param string $profileID
      * @param array $schedules
      * @return array

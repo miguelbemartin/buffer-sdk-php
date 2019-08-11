@@ -67,7 +67,7 @@ class Update
     /**
      * Add a social profile to be updated.
      *
-     * @param  string  $id
+     * @param string $id
      * @return Update
      */
     public function addProfile($id): self
@@ -80,8 +80,8 @@ class Update
     /**
      * Add media to the update.
      *
-     * @param string  $key
-     * @param string  $value
+     * @param string $key
+     * @param string $value
      * @return Update
      */
     public function addMedia($key, $value): self
@@ -89,7 +89,7 @@ class Update
         $available = array('link', 'description', 'picture');
 
         // accept only valid types for media
-        if (! in_array($key, $available)) {
+        if (!in_array($key, $available)) {
             throw new InvalidArgumentException('Media type must be a valid value: '.implode(', ', $available));
         }
 
@@ -101,7 +101,7 @@ class Update
     /**
      * Schedule a post with a timestamp or a valid DateTime string.
      *
-     * @param  mixed $when
+     * @param mixed $when
      * @return Update
      */
     public function schedule($when): self

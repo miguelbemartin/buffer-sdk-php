@@ -17,6 +17,11 @@ class AuthorizationToken implements AuthorizationTokenInterface
         $this->accessToken = $accessToken;
     }
 
+    /**
+     * Get Access Token.
+     *
+     * @return string
+     */
     public function getAccessToken(): string
     {
         return $this->accessToken;

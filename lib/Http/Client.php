@@ -26,9 +26,12 @@ class Client implements ClientInterface
     }
 
     /**
+     * Create Http Request and send the request.
+     *
      * @param string $method
      * @param string $url
      * @param array $options
+     *
      * @return array
      */
     public function createHttpRequest(string $method, string $endpoint, array $options = []): array

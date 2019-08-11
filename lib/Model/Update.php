@@ -9,6 +9,13 @@ class Update
 {
 
     /**
+     * The update ID.
+     *
+     * @var string
+     */
+    public $id = null;
+
+    /**
      * The status update text.
      *
      * @var string

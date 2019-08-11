@@ -24,9 +24,10 @@ class UpdateService
      * Returns a single social media update.
      *
      * @param string $profileID
+     *
      * @return array
      */
-    public function getUpdates(string $profileID)
+    public function getUpdates(string $profileID): array
     {
         return $this->client->createHttpRequest('GET', 'updates/'.$profileID.'.json');
     }
@@ -36,9 +37,10 @@ class UpdateService
      * individual social media profile.
      *
      * @param string $profileID
+     *
      * @return array
      */
-    public function getPendingUpdates(string $profileID)
+    public function getPendingUpdates(string $profileID): array
     {
         //TODO: Add parameters
         return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'/updates/pending.json');
@@ -49,9 +51,10 @@ class UpdateService
      * individual social media profile.
      *
      * @param string $profileID
+     *
      * @return array
      */
-    public function getSentUpdates(string $profileID)
+    public function getSentUpdates(string $profileID): array
     {
         //TODO: Add parameters
         return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'/updates/sent.json');
@@ -63,17 +66,20 @@ class UpdateService
      *
      * @param string $profileID
      * @param array $order
+     *
      * @return array
      */
-    public function reorderUpdates(string $profileID, array $order)
+    public function reorderUpdates(string $profileID, array $order, int $offset = null, bool $utc = false): array
     {
-        //TODO: Validate parameters
-        //TODO: Add parameters
         return $this->client->createHttpRequest(
             'POST',
             'profiles/'.$profileID.'/updates/reorder.json',
             [
-                'body' => $order,
+                'body' => [
+                    'order' => $order,
+                    'offset' => $offset,
+                    'utc' => $utc,
+                ],
             ]
         );
     }
@@ -83,17 +89,21 @@ class UpdateService
      * will be sent out of the buffer.
      *
      * @param string $profileID
+     * @param int|null $count
+     * @param bool $utc
+     *
      * @return array
      */
-    public function shuffleUpdates(string $profileID)
+    public function shuffleUpdates(string $profileID, int $count = null, bool $utc = false): array
     {
-        //TODO: Validate parameters
-        //TODO: Add parameters
         return $this->client->createHttpRequest(
             'POST',
             'profiles/'.$profileID.'/updates/shuffle.json',
             [
-                'body' => null,
+                'body' => [
+                    'count' => $count,
+                    'utc' => $utc,
+                ],
             ]
         );
     }
@@ -103,8 +113,32 @@ class UpdateService
      *
      * @param Update $update
      */
-    public function createUpdate(Update $update)
+    public function createUpdate(Update $update): array
     {
+        //TODO: Validate params
+
+        $payload = array(
+            'text' => $update->text,
+            'profile_ids' => $update->profiles,
+            'shorten' => $update->shorten,
+            'now' => $update->now,
+            'top' => $update->top,
+        );
+
+        if (!empty($update->media)) {
+            $payload['media'] = $update->media;
+        }
+        if (!is_null($update->scheduled_at)) {
+            $payload['scheduled_at'] = $update->scheduled_at;
+        }
+
+        return $this->client->createHttpRequest(
+            'POST',
+            'updates/create.json',
+            [
+                'body' => $payload,
+            ]
+        );
     }
 
     /**
@@ -112,27 +146,56 @@ class UpdateService
      *
      * @param Update $update
      */
-    public function updateUpdate(Update $update)
+    public function updateUpdate(Update $update): array
     {
+        //TODO: Validate params
+
+        $payload = array(
+            'text' => $update->text,
+            'now' => $update->now,
+        );
+
+        if (!empty($update->media)) {
+            $payload['media'] = $update->media;
+        }
+        if (!is_null($update->scheduled_at)) {
+            $payload['scheduled_at'] = $update->scheduled_at;
+        }
+
+        return $this->client->createHttpRequest(
+            'POST',
+            'updates/'.$update->id.'/update.json',
+            [
+                'body' => $payload,
+            ]
+        );
     }
 
     /**
      * Immediately shares a single pending update and recalculates times for updates
      * remaining in the queue.
      *
-     * @param Update $update
+     * @param string $updateID
      */
-    public function shareUpdate(Update $update)
+    public function shareUpdate(string $updateID): array
     {
+        return $this->client->createHttpRequest(
+            'POST',
+            'updates/'.$updateID.'/share.json'
+        );
     }
 
     /**
      * Permanently delete an existing status update.
      *
-     * @param Update $update
+     * @param string $updateID
      */
-    public function deleteUpdate(Update $update)
+    public function deleteUpdate(string $updateID): array
     {
+        return $this->client->createHttpRequest(
+            'POST',
+            'updates/'.$updateID.'/destroy.json'
+        );
     }
 
     /**
@@ -140,9 +203,10 @@ class UpdateService
      * for all updates in the queue. Returns the update with its new posting time.
      *
      * @param string $updateID
+     *
      * @return array
      */
-    public function moveToTopUpdate(string $updateID)
+    public function moveToTopUpdate(string $updateID): array
     {
         return $this->client->createHttpRequest(
             'POST',
@@ -154,9 +218,10 @@ class UpdateService
      * Returns an object with a the numbers of shares a link has had using Buffer.
      *
      * @param string $url string URL-encoded URL of the page for which the number of shares is requested.
+     *
      * @return array
      */
-    public function getSharesLink(string $url)
+    public function getSharesLink(string $url): array
     {
         return $this->client->createHttpRequest('GET', 'links/shares.json?url='.$url);
     }

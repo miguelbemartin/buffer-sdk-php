@@ -8,6 +8,13 @@ class Schedule
 {
 
     /**
+     * The update ID.
+     *
+     * @var string
+     */
+    public $id = null;
+
+    /**
      * Array of scheduled days.
      *
      * @var array
@@ -43,9 +50,9 @@ class Schedule
      * Schedule a new day.
      *
      * @param  string|array  $day
-     * @return \BufferSDK\Schedule
+     * @return Schedule
      */
-    public function addDay($day)
+    public function addDay($day): self
     {
         $available = array('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun');
 
@@ -64,10 +71,10 @@ class Schedule
     /**
      * Schedule a time.
      *
-     * @param  string|array  $time
-     * @return \BufferSDK\Schedule
+     * @param string|array $time
+     * @return Schedule
      */
-    public function addTime($time)
+    public function addTime($time): self
     {
         foreach ((array) $time as $value) {
             // only accept valid times (HH:mm)
@@ -86,7 +93,7 @@ class Schedule
      *
      * @return array
      */
-    public function getDays()
+    public function getDays(): array
     {
         return $this->days;
     }
@@ -96,7 +103,7 @@ class Schedule
      *
      * @return array
      */
-    public function getTimes()
+    public function getTimes(): array
     {
         return $this->times;
     }

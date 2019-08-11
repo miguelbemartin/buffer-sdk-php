@@ -24,7 +24,7 @@ class UserService
      *
      * @return array
      */
-    public function getUser()
+    public function getUser(): array
     {
         return $this->client->createHttpRequest('GET', 'user.json');
     }

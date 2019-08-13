@@ -3,6 +3,7 @@
 namespace BufferSDK\Service;
 
 use BufferSDK\Http\ClientInterface;
+use BufferSDK\Model\Schedule;
 
 class ProfileService
 {
@@ -54,23 +55,19 @@ class ProfileService
     }
 
     /**
-     * Set the posting schedules for the specified social media profile.
+     * Set the posting schedule for the specified social media profile.
      *
      * @param string $profileID
-     * @param array $schedules
+     * @param Schedule $schedule
      *
      * @return array
      */
-    public function updateSchedules(string $profileID, array $schedules): array
+    public function updateSchedule(string $profileID, Schedule $schedule): array
     {
-        if (is_array($schedules)) {
-            //TODO: Implement array
-        }
-
         $payload = array('schedules' => array());
         $payload['schedules'][] = array(
-            'days'  => $schedules->getDays(),
-            'times' => $schedules->getTimes(),
+            'days'  => $schedule->getDays(),
+            'times' => $schedule->getTimes(),
         );
 
         return $this->client->createHttpRequest(

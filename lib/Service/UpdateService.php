@@ -38,12 +38,16 @@ class UpdateService
      *
      * @param string $profileID
      *
+     * @param int $page
+     * @param int $count
+     * @param string|null $since
+     * @param bool $utc
+     *
      * @return array
      */
-    public function getPendingUpdates(string $profileID): array
+    public function getPendingUpdates(string $profileID, int $page = 1, int $count = 100, string $since = "", bool $utc = false): array
     {
-        //TODO: Add parameters
-        return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'/updates/pending.json');
+        return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'/updates/pending.json?page='.$page.'&count='.$count.'&since='.$since.'&utc='.$utc);
     }
 
     /**
@@ -52,12 +56,16 @@ class UpdateService
      *
      * @param string $profileID
      *
+     * @param int $page
+     * @param int $count
+     * @param string|null $since
+     * @param bool $utc
+     *
      * @return array
      */
-    public function getSentUpdates(string $profileID): array
+    public function getSentUpdates(string $profileID, int $page = 1, int $count = 100, string $since = "", bool $utc = false, string $filter = ""): array
     {
-        //TODO: Add parameters
-        return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'/updates/sent.json');
+        return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'/updates/sent.json?page='.$page.'&count='.$count.'&since='.$since.'&utc='.$utc.'&filter='.$filter);
     }
 
     /**
@@ -115,7 +123,7 @@ class UpdateService
      */
     public function createUpdate(Update $update): array
     {
-        //TODO: Validate params
+        $update->validate();
 
         $payload = array(
             'text' => $update->text,
@@ -148,7 +156,7 @@ class UpdateService
      */
     public function updateUpdate(Update $update): array
     {
-        //TODO: Validate params
+        $update->validate();
 
         $payload = array(
             'text' => $update->text,

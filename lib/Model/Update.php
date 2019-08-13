@@ -124,4 +124,11 @@ class Update
 
         return $this;
     }
+
+    public function validate()
+    {
+        if ((!isset($this->text) || trim($this->text) === '')) {
+            throw new InvalidArgumentException('text field should be filled');
+        }
+    }
 }

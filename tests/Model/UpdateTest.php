@@ -27,9 +27,9 @@ class UpdateTest extends TestCase
         $update = new Update();
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Media type must be a valid value: link, description, picture");
+        $this->expectExceptionMessage("Media type must be a valid value: link, description, picture, photo.");
 
-        $update->addMedia('one-test', 'another-test');
+        $update->addMedia('media-type-not-existing', 'some-value');
     }
     public function testSchedule()
     {

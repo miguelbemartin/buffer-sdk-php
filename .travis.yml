@@ -8,7 +8,7 @@ before_script:
   - echo 'date.timezone = "UTC"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 script:
-  - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover=coverage.yml
+  - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover=coverage.xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

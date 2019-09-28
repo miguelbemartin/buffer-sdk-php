@@ -1,7 +1,6 @@
 {
   "name": "miguelbemartin/buffer-sdk-php",
   "description": "This library allows you to user the Buffer API using PHP",
-  "version": "1.0.3",
   "homepage": "https://github.com/miguelbemartin/buffer-sdk-php",
   "license": "MIT",
   "keywords": [

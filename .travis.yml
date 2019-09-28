@@ -6,3 +6,6 @@ before_script:
 
 script:
   - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-text
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

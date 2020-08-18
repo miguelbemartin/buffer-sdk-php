@@ -42,6 +42,8 @@ $profiles = $buffer->profileService->getProfiles();
 ```
 
 ## Contributing
+* Open a PR: https://github.com/miguelbemartin/buffer-sdk-php/pulls
+* Open an issue: https://github.com/miguelbemartin/buffer-sdk-php/issues
 
 ## Authors
 * **Miguel Ángel Martín** - [@miguelbemartin](https://twitter.com/miguelbemartin)

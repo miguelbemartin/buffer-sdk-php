@@ -27,8 +27,7 @@
   "autoload": {
     "psr-4": {
       "BufferSDK\\": "lib/"
-    },
-    "files": ["lib/Buffer.php"]
+    }
   },
   "autoload-dev": {
     "psr-4": {

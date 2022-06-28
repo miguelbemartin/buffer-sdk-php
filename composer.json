@@ -20,9 +20,6 @@
     "swaggest/json-diff": "^3.4",
     "phpunit/phpunit": "^8.3"
   },
-  "replace": {
-    "miguelbemartin/buffer-sdk-php": "*"
-  },
   "type": "library",
   "autoload": {
     "psr-4": {

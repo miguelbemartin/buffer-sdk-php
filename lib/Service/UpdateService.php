@@ -29,43 +29,29 @@ class UpdateService
      */
     public function getUpdates(string $profileID): array
     {
-        return $this->client->createHttpRequest('GET', 'updates/'.$profileID.'.json');
+        return $this->client->createHttpRequest('GET', "updates/{$profileID}.json");
     }
 
     /**
      * Returns an array of updates that are currently in the buffer for an
      * individual social media profile.
      *
-     * @param string $profileID
-     *
-     * @param int $page
-     * @param int $count
-     * @param string|null $since
-     * @param bool $utc
-     *
      * @return array
      */
     public function getPendingUpdates(string $profileID, int $page = 1, int $count = 100, string $since = "", bool $utc = false): array
     {
-        return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'/updates/pending.json?page='.$page.'&count='.$count.'&since='.$since.'&utc='.$utc);
+        return $this->client->createHttpRequest('GET', "profiles/{$profileID}/updates/pending.json?page={$page}&count={$count}&since={$since}&utc={$utc}");
     }
 
     /**
      * Returns an array of updates that have been sent from the buffer for an
      * individual social media profile.
      *
-     * @param string $profileID
-     *
-     * @param int $page
-     * @param int $count
-     * @param string|null $since
-     * @param bool $utc
-     *
      * @return array
      */
     public function getSentUpdates(string $profileID, int $page = 1, int $count = 100, string $since = "", bool $utc = false, string $filter = ""): array
     {
-        return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'/updates/sent.json?page='.$page.'&count='.$count.'&since='.$since.'&utc='.$utc.'&filter='.$filter);
+        return $this->client->createHttpRequest('GET', "profiles/{$profileID}/updates/sent.json?page={$page}&count={$count}&since={$since}&utc={$utc}&filter={$filter}");
     }
 
     /**
@@ -77,11 +63,11 @@ class UpdateService
      *
      * @return array
      */
-    public function reorderUpdates(string $profileID, array $order, int $offset = null, bool $utc = false): array
+    public function reorderUpdates(string $profileID, array $order, ?int $offset = null, bool $utc = false): array
     {
         return $this->client->createHttpRequest(
             'POST',
-            'profiles/'.$profileID.'/updates/reorder.json',
+            "profiles/{$profileID}/updates/reorder.json",
             [
                 'body' => [
                     'order' => $order,
@@ -102,11 +88,11 @@ class UpdateService
      *
      * @return array
      */
-    public function shuffleUpdates(string $profileID, int $count = null, bool $utc = false): array
+    public function shuffleUpdates(string $profileID, ?int $count = null, bool $utc = false): array
     {
         return $this->client->createHttpRequest(
             'POST',
-            'profiles/'.$profileID.'/updates/shuffle.json',
+            "profiles/{$profileID}/updates/shuffle.json",
             [
                 'body' => [
                     'count' => $count,
@@ -125,13 +111,13 @@ class UpdateService
     {
         $update->validate();
 
-        $payload = array(
+        $payload = [
             'text' => $update->text,
             'profile_ids' => $update->profiles,
             'shorten' => $update->shorten,
             'now' => $update->now,
             'top' => $update->top,
-        );
+        ];
 
         if (!empty($update->media)) {
             $payload['media'] = $update->media;
@@ -158,10 +144,10 @@ class UpdateService
     {
         $update->validate();
 
-        $payload = array(
+        $payload = [
             'text' => $update->text,
             'now' => $update->now,
-        );
+        ];
 
         if (!empty($update->media)) {
             $payload['media'] = $update->media;
@@ -172,7 +158,7 @@ class UpdateService
 
         return $this->client->createHttpRequest(
             'POST',
-            'updates/'.$update->id.'/update.json',
+            "updates/{$update->id}/update.json",
             [
                 'body' => $payload,
             ]
@@ -189,7 +175,7 @@ class UpdateService
     {
         return $this->client->createHttpRequest(
             'POST',
-            'updates/'.$updateID.'/share.json'
+            "updates/{$updateID}/share.json"
         );
     }
 
@@ -202,7 +188,7 @@ class UpdateService
     {
         return $this->client->createHttpRequest(
             'POST',
-            'updates/'.$updateID.'/destroy.json'
+            "updates/{$updateID}/destroy.json"
         );
     }
 
@@ -218,7 +204,7 @@ class UpdateService
     {
         return $this->client->createHttpRequest(
             'POST',
-            'updates/'.$updateID.'/move_to_top.json'
+            "updates/{$updateID}/move_to_top.json"
         );
     }
 
@@ -231,6 +217,6 @@ class UpdateService
      */
     public function getSharesLink(string $url): array
     {
-        return $this->client->createHttpRequest('GET', 'links/shares.json?url='.$url);
+        return $this->client->createHttpRequest('GET', "links/shares.json?url={$url}");
     }
 }

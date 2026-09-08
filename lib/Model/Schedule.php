@@ -19,29 +19,29 @@ class Schedule
      *
      * @var array
      */
-    protected $days = array();
+    protected $days = [];
 
     /**
      * Array of scheduled times.
      *
      * @var array
      */
-    protected $times = array();
+    protected $times = [];
 
     /**
      * Create a new Schedule instance.
      *
-     * @param  array  $days
-     * @param  array  $times
+     * @param array $days
+     * @param array $times
      * @return void
      */
-    public function __construct($days = array(), $times = array())
+    public function __construct($days = [], $times = [])
     {
-        if (! empty($days)) {
+        if (!empty($days)) {
             $this->addDay($days);
         }
 
-        if (! empty($times)) {
+        if (!empty($times)) {
             $this->addTime($times);
         }
     }
@@ -49,17 +49,17 @@ class Schedule
     /**
      * Schedule a new day.
      *
-     * @param  string|array  $day
+     * @param string|array $day
      * @return Schedule
      */
     public function addDay($day): self
     {
-        $available = array('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun');
+        $available = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-        foreach ((array) $day as $value) {
+        foreach ((array)$day as $value) {
             // only accept valid values
-            if (! in_array($value, $available)) {
-                throw new InvalidArgumentException('Day must be a valid value: '.implode(', ', $available));
+            if (!in_array($value, $available)) {
+                throw new InvalidArgumentException('Day must be a valid value: ' . implode(', ', $available));
             }
 
             $this->days[] = $value;
@@ -76,9 +76,9 @@ class Schedule
      */
     public function addTime($time): self
     {
-        foreach ((array) $time as $value) {
+        foreach ((array)$time as $value) {
             // only accept valid times (HH:mm)
-            if (! preg_match('#([01][0-9]|2[0-3]):[0-5][0-9]#', $value)) {
+            if (!preg_match('#([01][0-9]|2[0-3]):[0-5][0-9]#', $value)) {
                 throw new InvalidArgumentException('Time must be valid: HH:mm.');
             }
 

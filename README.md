@@ -10,7 +10,7 @@ This library allows you to quickly and easily use the Buffer Web API v1 via PHP.
 ## Getting Started
 
 ### Prerequisites
-- PHP >=7.2
+- PHP >=8.2
 
 ### Installation
 Run into the terminal the next command

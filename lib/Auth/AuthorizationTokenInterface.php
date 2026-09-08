@@ -4,5 +4,5 @@ namespace BufferSDK\Auth;
 
 interface AuthorizationTokenInterface
 {
-    public function getAccessToken();
+    public function getAccessToken() : string;
 }

@@ -19,8 +19,6 @@ class AuthorizationToken implements AuthorizationTokenInterface
 
     /**
      * Get Access Token.
-     *
-     * @return string
      */
     public function getAccessToken(): string
     {

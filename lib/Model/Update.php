@@ -18,7 +18,7 @@ class Update
     /**
      * The status update text.
      *
-     * @var string
+     * @var string|null
      */
     public $text = null;
 
@@ -28,7 +28,7 @@ class Update
      *
      * @var array
      */
-    public $profiles = array();
+    public $profiles = [];
 
     /**
      * If shorten is false links within the text will not be automatically
@@ -60,14 +60,14 @@ class Update
      *
      * @var array
      */
-    public $media = array();
+    public $media = [];
 
     /**
      * A date describing when the update should be posted. Overrides any top or
      * now parameter. When using ISO 8601 format, if no UTC offset is specified,
      * UTC is assumed.
      *
-     * @var \DateTime
+     * @var string|null
      */
     public $scheduled_at = null;
 
@@ -93,11 +93,11 @@ class Update
      */
     public function addMedia($key, $value): self
     {
-        $available = array('link', 'description', 'picture', 'photo');
+        $available = ['link', 'description', 'picture', 'photo'];
 
         // accept only valid types for media
         if (!in_array($key, $available)) {
-            throw new InvalidArgumentException('Media type must be a valid value: '.implode(', ', $available).'.');
+            throw new InvalidArgumentException('Media type must be a valid value: ' . implode(', ', $available) . '.');
         }
 
         $this->media[$key] = $value;
@@ -125,7 +125,7 @@ class Update
         return $this;
     }
 
-    public function validate()
+    public function validate(): void
     {
         if ((!isset($this->text) || trim($this->text) === '')) {
             throw new InvalidArgumentException('text field should be filled');

@@ -39,7 +39,7 @@ class ProfileService
      */
     public function getProfile(string $profileID): array
     {
-        return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'.json');
+        return $this->client->createHttpRequest('GET', "profiles/{$profileID}.json");
     }
 
     /**
@@ -51,7 +51,7 @@ class ProfileService
      */
     public function getSchedules(string $profileID): array
     {
-        return $this->client->createHttpRequest('GET', 'profiles/'.$profileID.'/schedules.json');
+        return $this->client->createHttpRequest('GET', "profiles/{$profileID}/schedules.json");
     }
 
     /**
@@ -64,15 +64,15 @@ class ProfileService
      */
     public function updateSchedule(string $profileID, Schedule $schedule): array
     {
-        $payload = array('schedules' => array());
-        $payload['schedules'][] = array(
-            'days'  => $schedule->getDays(),
+        $payload = ['schedules' => []];
+        $payload['schedules'][] = [
+            'days' => $schedule->getDays(),
             'times' => $schedule->getTimes(),
-        );
+        ];
 
         return $this->client->createHttpRequest(
             'POST',
-            'profiles/'.$profileID.'/schedules/update.json',
+            "profiles/{$profileID}/schedules/update.json",
             [
                 'body' => $payload,
             ]
